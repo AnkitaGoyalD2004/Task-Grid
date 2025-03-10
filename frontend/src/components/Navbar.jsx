@@ -1,42 +1,12 @@
-// import { AppBar, Button, Typography } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
-
-// const Navbar = () => {
-//   const navigate = useNavigate();
-
-//   const handleLogout = () => {
-//     localStorage.removeItem('token');
-//     navigate('/login');
-//   };
-
-//   return (
-//     <AppBar position="fixed">
-//         <Typography 
-//           variant="h6" 
-//           component="div" 
-//           sx={{ flexGrow: 1, cursor: 'pointer' }}
-//           onClick={() => navigate('/dashboard')}
-//         >
-//           Task Grid
-//         </Typography>
-    
-//           <Button color="inherit" onClick={handleLogout}>
-//             Logout
-//           </Button>
-       
-//     </AppBar>
-//   );
-// };
-
-// export default Navbar;
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    setIsAuthenticated(false);
     navigate('/login');
   };
 

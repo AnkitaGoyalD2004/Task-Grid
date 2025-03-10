@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/api';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [formData, setFormData] = useState({
@@ -33,6 +33,7 @@ const Login = () => {
     try {
       const response = await loginUser(formData);
       localStorage.setItem('token', response.token);
+      setIsAuthenticated(true);
       navigate('/dashboard');
     } catch (error) {
       setError(error.response?.data?.message || 'Login failed');
